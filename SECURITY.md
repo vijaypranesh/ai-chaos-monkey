@@ -10,7 +10,7 @@ Security is a priority for the Autonomous SRE Arena, especially since it involve
 
 Please do not report security vulnerabilities through public GitHub issues.
 
-Instead, please report them by emailing the maintainer directly at: [Insert Your Email Address]
+Instead, please report them by emailing the maintainer directly at: vijayendrapranesh.hunasgi@gmail.com
 
 Please include the following information in your report:
 
