@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kubernetes Arena Dashboard</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; background: #0f172a; color: #f8fafc; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: #1e293b; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #334155; }
+        .status-running { color: #10b981; font-weight: bold; }
+        .status-pending { color: #f59e0b; font-weight: bold; }
+        .status-terminating { color: #ef4444; font-weight: bold; }
+        .header-section { margin-bottom: 40px; text-align: center; }
+        .title { color: #38bdf8; font-size: 3em; margin-bottom: 5px; }
+        .subtitle { color: #94a3b8; font-size: 1.2em; margin-top: 0; }
+    </style>
+</head>
+<body>
+    <div class="header-section">
+        <h1 class="title">☸️ Kubernetes Arena</h1>
+        <p class="subtitle">Autonomous SRE Failover Testing</p>
+    </div>
+    
+    <h2>Live API Pods (ReplicaSet = 3)</h2>
+    <div class="grid" id="containers"></div>
+
+    <script>
+        const evtSource = new EventSource("/stream");
+        evtSource.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            
+            const contEl = document.getElementById("containers");
+            contEl.innerHTML = "";
+            
+            data.containers.sort((a,b) => a.name.localeCompare(b.name));
+            
+            data.containers.forEach(c => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `<h3>${c.name}</h3><p class="status-${c.status.toLowerCase()}">${c.status.toUpperCase()}</p>`;
+                contEl.appendChild(card);
+            });
+        };
+    </script>
+</body>
+</html>
