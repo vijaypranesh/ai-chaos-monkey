@@ -1,6 +1,6 @@
 # ⚔️ Autonomous SRE Arena (AI Thunderdome)
 
-> **I am officially done waking up at 3 AM to fix Kubernetes. So I built an AI that does it for me.**
+> **I locked two autonomous AI agents in a live Kubernetes cluster. One is programmed to destroy it. The other is programmed to save it. Welcome to the AI Thunderdome.**
 
 Welcome to the **Autonomous SRE Arena**, a local sandbox environment designed to demonstrate **Adversarial Agentic DevOps**. This project pits two AI agents against each other inside a live Kubernetes cluster:
 
